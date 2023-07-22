@@ -42,7 +42,6 @@ public class ProvMenu {
 			break;
 			
 		case 0:
-			
 			break;
 			
 		default:
@@ -247,6 +246,74 @@ public class ProvMenu {
 		}
 		
 		System.out.println("\nResultado:\n" + Calculator.adultCardiovascularRisk(waist, hip, gender));
+		
+		menuBeg();
+	}
+	
+	public static void calculateBodyFatPercentage() {
+		System.out.println("\n--- Calcular Porcentaje de Grasa Corporal ---\n"
+				+ "\nSelecciona la fórmula que deseas usar:"
+				+ "\n1) Faulkner"
+				+ "\n2) Yuhasz");
+		
+		int selection = Integer.parseInt(in.nextLine());
+		
+		System.out.println("\nSelecciona el género  de la persona:"
+				+ "\n1) Mujer"
+				+ "\n2) Hombre");
+		
+		int genderSelection = Integer.parseInt(in.nextLine());
+		boolean gender = false;
+		
+		switch (genderSelection) {
+		case 1:
+			gender = true;
+			break;
+		}
+		
+		System.out.println("\nDigita el valor del plieguie tricipital:");
+		
+		double tricipitalFold = Double.parseDouble(in.nextLine());
+		
+		System.out.println("\nDigita el valor del plieguie abdominal:");
+		
+		double abdominalFold = Double.parseDouble(in.nextLine());
+		
+		System.out.println("\nDigita el valor del plieguie subescapular:");
+		
+		double subscapularFold = Double.parseDouble(in.nextLine());
+		
+		System.out.println("\nDigita el valor del plieguie supraespinal:");
+		
+		double supraspinalFoldFold = Double.parseDouble(in.nextLine());
+		
+		String result = "";
+		
+		switch (selection) {
+		case 1:
+			result = Calculator.adultBodyFatFaulkner(tricipitalFold, abdominalFold, subscapularFold, supraspinalFoldFold, gender);
+			break;
+
+		case 2:
+			System.out.println("\nDigita el valor del plieguie muslo frontal:");
+			
+			double thighFold = Double.parseDouble(in.nextLine());
+			
+			System.out.println("\nDigita el valor del plieguie de pantorrilla:");
+			
+			double calfFold = Double.parseDouble(in.nextLine());
+			
+			result = Calculator.adultBodyFatYuhasz(tricipitalFold, abdominalFold, subscapularFold, supraspinalFoldFold, thighFold, calfFold, gender);
+			
+			break;
+			
+		default:
+			System.out.println("\nSelección inválida. Intenta nuevamente.");
+			calculateBodyFatPercentage();
+			break;
+		}
+		
+		System.out.println("\nResultado:\n" + result);
 		
 		menuBeg();
 	}

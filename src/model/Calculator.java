@@ -1,27 +1,43 @@
 package model;
 
+import java.util.stream.DoubleStream;
+
 public class Calculator {
 
 	//--- LESS THAN 5 YEARS OLD ---
 	
+	/**
+	 * Determines the weight classification of a child under 5 years of age depending 
+	 * on the value of the input indicator.
+	 * 
+	 * @param indicator the value to determine the classification.
+	 * @return the classification.
+	 */
 	public static String weightForSize(double indicator) {
 		if(indicator > 3) {
 			return "Obesidad";
-		} else if (indicator > 2 && indicator <= 3) {
+		} else if (isInRange(indicator, 2, false, 3, true)) {
 			return "Sobrepeso";
-		} else if (indicator > 1 && indicator <= 2) {
+		} else if (isInRange(indicator, 1, false, 2, true)) {
 			return "Riesgo de Sobrepeso";
-		} else if (indicator >= -1 && indicator <= 1) {
+		} else if (isInRange(indicator, -1, true, 1, true)) {
 			return "Sobrepeso";
-		} else if (indicator >= -2 && indicator < -1) {
+		} else if (isInRange(indicator, -2, true, -1, false)) {
 			return "Riesgo de Desnutrición Aguda";
-		} else if (indicator >= -3 && indicator < -2) {
+		} else if (isInRange(indicator, -3, true, -2, false)) {
 			return "Desnutrición Aguda Modearada";
 		} else {
 			return "Desnutrición Aguda Severa";
 		}
 	}
 	
+	/**
+	 * Determines the height classification of a child under 5 years of age depending 
+	 * on the value of the input indicator.
+	 * 
+	 * @param indicatort he value to determine the classification.
+	 * @return the classification.
+	 */
 	public static String sizeForAge(double indicator) {
 		if(indicator >= -1) {
 			return "Talla Adecuada para la Edad";
@@ -32,6 +48,13 @@ public class Calculator {
 		}
 	}
 	
+	/**
+	 * Determines the classification of the head circumference of a child under 5 years 
+	 * of age depending on the value of the input indicator.
+	 * 
+	 * @param indicatort he value to determine the classification.
+	 * @return the classification.
+	 */
 	public static String headCircumferenceForAge(double indicator) {
 		if(indicator >= -2 && indicator <= 2 ) {
 			return "Normal";
@@ -40,6 +63,13 @@ public class Calculator {
 		}
 	}
 	
+	/**
+	 * Determines the BMI classification, for a child under 5 years of age, based 
+	 * on the value of the input indicator.
+	 * 
+	 * @param indicator the value to determine the classification.
+	 * @return the classification of the BMI.
+	 */
 	public static String BMIForAge(double indicator) {
 		if(indicator > 3) {
 			return "Obesidad";
@@ -52,6 +82,13 @@ public class Calculator {
 		}
 	}
 	
+	/**
+	 * Determines the weight classification of a child under 5 years of age depending 
+	 * on the value of the input indicator.
+	 * 
+	 * @param indicator the value to determine the classification.
+	 * @return the classification.
+	 */
 	public static String weightForAge(double indicator) {
 		if (indicator > 1) {
 			return "No Aplica (Verificar con IMC/E)";
@@ -66,6 +103,13 @@ public class Calculator {
 	
 	//--- OVER 5 YEARS OLD ---
 	
+	/**
+	 * Determines the BMI classification, for a child over 5 years of age, based 
+	 * on the value of the input indicator.
+	 * 
+	 * @param indicator the value to determine the classification.
+	 * @return the classification of the BMI.
+	 */
 	public static String BMIForAge5YearsOlder(double indicator) {
 		if(indicator > 2) {
 			return "Obesidad";
@@ -208,7 +252,7 @@ public class Calculator {
 	public static String adultCardiovascularRisk(double waistCircumference, double hipCircumference, boolean gender) {
 		double cardiovascularRisk = waistCircumference/hipCircumference;
 		
-		String risk = "Resultado: " + cardiovascularRisk + " - ";
+		String risk = "Riesgo cardiovascular: " + cardiovascularRisk + " - ";
 		
 		if(gender) {
 			if(cardiovascularRisk >= 0.85) {
@@ -231,6 +275,91 @@ public class Calculator {
 		return risk;
 	}
 	
+	/**
+	 * Using the Faulkner formula, that needs 4 folds, calculates the body fat percentage
+	 * and returns a classification based on that percentage.
+	 * 
+	 * @param tricipitalFold fold 1.
+	 * @param abdominalFold fold 2.
+	 * @param subscapularFold fold 3.
+	 * @param supraspinalFold fold 4.
+	 * @param gender true for woman, false otherwise.
+	 * @return the classification based on the body fat percentage.
+	 */
+	public static String adultBodyFatFaulkner(double tricipitalFold, double abdominalFold, double subscapularFold, double supraspinalFold, boolean gender) {
+		double[] folds = {tricipitalFold, abdominalFold, subscapularFold, supraspinalFold};
+		
+		double percentage = ((DoubleStream.of(folds).sum()) * 0.153 + 5.783) * 100;
+		
+		return clasifyBodyFat(percentage, gender);
+	}
+	
+	/**
+	 * Using the Yuhasz formula, that needs 6 folds, calculates the body fat percentage
+	 * and returns a classification based on that percentage.
+	 * 
+	 * @param tricipitalFold fold 1.
+	 * @param abdominalFold fold 2.
+	 * @param subscapularFold fold 3.
+	 * @param supraspinalFold fold 4.
+	 * @param thighFold fold 5.
+	 * @param calfFold fold 6.
+	 * @param gender true for woman, false otherwise.
+	 * @return the classification based on the body fat percentage.
+	 */
+	public static String adultBodyFatYuhasz(double tricipitalFold, double abdominalFold, double subscapularFold, double supraspinalFold, double thighFold, double calfFold, boolean gender) {
+		double[] folds = {tricipitalFold, abdominalFold, subscapularFold, supraspinalFold, thighFold, calfFold};
+		
+		double percentage = 0;
+		
+		if(gender) {
+			percentage = ((DoubleStream.of(folds).sum()) * 0.1429 + 4.56) * 100;
+		} else {
+			percentage = ((DoubleStream.of(folds).sum()) * 0.097 + 3.64	) * 100;
+		}
+		
+		return clasifyBodyFat(percentage, gender);
+	}
+	
+	/**
+	 * Returns a body fat classification based on the percentage of fat input, and the gender of the individual.
+	 * 
+	 * @param fatPercentage the body fat percentage input.
+	 * @param gender true for woman, false otherwise. 
+	 * @return the classification.
+	 */
+	private static String clasifyBodyFat(double fatPercentage, boolean gender) {
+		String classification = "Porcentaje de Grasa  corporal: " + fatPercentage + " - ";
+		
+		if(gender) {
+			if(fatPercentage < 15) {
+				classification += "Delgado";
+			} else if (isInRange(fatPercentage, 15.1, true, 20.9, true)) {
+				classification += "Óptimo";
+			} else if (isInRange(fatPercentage, 21, true, 25.9, true)) {
+				classification += "Ligero Sobrepeso";
+			} else if (isInRange(fatPercentage, 26, true, 31.9, true)) {
+				classification += "Sobrepeso";
+			} else {
+				classification += "Obesidad";
+			}
+		} else {
+			if(fatPercentage < 8) {
+				classification += "Delgado";
+			} else if (isInRange(fatPercentage, 8.1, true, 15.9, true)) {
+				classification += "Óptimo";
+			} else if (isInRange(fatPercentage, 16, true, 20.9, true)) {
+				classification += "Ligero Sobrepeso";
+			} else if (isInRange(fatPercentage, 21, true, 24.9, true)) {
+				classification += "Sobrepeso";
+			} else {
+				classification += "Obesidad";
+			}
+		}
+		
+		return classification;
+	}
+	
 	//--- AUXILIAR ---
 	
 	/**
@@ -243,7 +372,7 @@ public class Calculator {
 	 * @param uBoundIncluded true if the upper boundary is included in the range. False otherwise.
 	 * @return true if @param num is in the range. False otherwise.
 	 */
-	public static boolean isInRange(double num, double lowerBound, boolean lBoundIncluded, double upperBound, boolean uBoundIncluded) {
+	private static boolean isInRange(double num, double lowerBound, boolean lBoundIncluded, double upperBound, boolean uBoundIncluded) {
 		if(num >= lowerBound && num <= upperBound) {
 			if(num == upperBound && !uBoundIncluded || num == lowerBound && !lBoundIncluded) {
 				return false;
