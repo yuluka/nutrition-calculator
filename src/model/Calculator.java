@@ -41,7 +41,7 @@ public class Calculator {
 	public static String sizeForAge(double indicator) {
 		if(indicator >= -1) {
 			return "Talla Adecuada para la Edad";
-		} else if (indicator >= -2 && indicator < -1) {
+		} else if (isInRange(indicator, -2, true, -1, false)) {
 			return "Riesgo de Talla Baja";
 		} else {
 			return "Talla Baja para la Edad";
@@ -56,7 +56,7 @@ public class Calculator {
 	 * @return the classification.
 	 */
 	public static String headCircumferenceForAge(double indicator) {
-		if(indicator >= -2 && indicator <= 2 ) {
+		if(isInRange(indicator, -2, true, 2, true)) {
 			return "Normal";
 		} else {
 			return "Factor de Riesgo para el Desarrollo Neurodesarrollo";
@@ -73,9 +73,9 @@ public class Calculator {
 	public static String BMIForAge(double indicator) {
 		if(indicator > 3) {
 			return "Obesidad";
-		} else if(indicator > 2 && indicator <= 3) {
+		} else if(isInRange(indicator, 2, false, 3, true)) {
 			return "Sobrepeso";
-		} else if(indicator > 1 && indicator <= 2) {
+		} else if(isInRange(indicator, 1, false, 2, true)) {
 			return "Riesgo de Sobrepeso";
 		} else {
 			return "No Aplica (Verificar con P/T)";			
@@ -92,9 +92,9 @@ public class Calculator {
 	public static String weightForAge(double indicator) {
 		if (indicator > 1) {
 			return "No Aplica (Verificar con IMC/E)";
-		} else if (indicator >= -1 && indicator < 1) {
+		} else if (isInRange(indicator, -1, true, 1, false)) {
 			return "Peso Adecuado para la Edad";
-		} else if (indicator >= -2 && indicator < -1) {
+		} else if (isInRange(indicator, -2, true, -1, false)) {
 			return "Riesgo de Desnutrición Global";
 		} else {
 			return "Desnutrición Global";
@@ -113,11 +113,11 @@ public class Calculator {
 	public static String BMIForAge5YearsOlder(double indicator) {
 		if(indicator > 2) {
 			return "Obesidad";
-		} else if (indicator > 1 && indicator <= 2) {
+		} else if (isInRange(indicator, 1, false, 2, true)) {
 			return "Sobrepeso";
-		} else if (indicator >= -1 && indicator <= 1) {
+		} else if (isInRange(indicator, -1, false, 1, true)) {
 			return "IMC Adecuado para la Edad";
-		} else if (indicator >= -2 && indicator < -1) {
+		} else if (isInRange(indicator, -2, true, -1, false)) {
 			return "Riesgo de Delgadez";
 		} else {
 			return "Delgadez";
@@ -136,7 +136,7 @@ public class Calculator {
 	 * @return the classification based on the calculated BMI.
 	 */
 	public static String adultBMI(double weight, double height) {
-		double bmi = weight / (Math.pow(height, 2));
+		double bmi = calculateBMI(weight, height);
 		
 		String classification = "IMC: " + bmi + " - ";
 		
@@ -360,6 +360,136 @@ public class Calculator {
 		return classification;
 	}
 	
+	//--- PREGNANT ---
+	
+	/**
+	 * Calculates the BMI of a pregnant woman and returns a classification based on the BMI value and the week
+	 * of pregnancy.
+	 * 
+	 * @param weight the weight of the woman (in kilograms).
+	 * @param height the height of the woman (in meters).
+	 * @param gestationWeek the week of pregnancy the woman is at.
+	 * @return the classification based on the BMI.
+	 */
+	public static String pregnantBMI(double weight, double height, int gestationWeek) {
+		double bmi = calculateBMI(weight, height);
+		
+		String classification = "IMC: " + bmi + " - ";
+		
+		if(isInRange(gestationWeek, 10, true, 15, true)) {
+			if(isInRange(bmi, 15, true, 21, true)) {
+				classification += "Bajo Peso para la Edad Gestacional";
+			} else if (isInRange(bmi, 21, true, 25, true)) {
+				classification += "IMC Adecuado para la Edad Gestacional";
+			} else if (isInRange(bmi, 25, true, 30, true)) {
+				classification += "Sobrepeso para la Edad Gestacional";
+			} else if (isInRange(bmi, 30, true, 40, true)) {
+				classification += "Obesidad para la Edad Gestacional";
+			}
+		} else if (isInRange(gestationWeek, 16, true, 20, true)) {
+			if(isInRange(bmi, 15, true, 21, true)) {
+				classification += "Bajo Peso para la Edad Gestacional";
+			} else if (isInRange(bmi, 21, true, 26, true)) {
+				classification += "IMC Adecuado para la Edad Gestacional";
+			} else if (isInRange(bmi, 26, true, 31, true)) {
+				classification += "Sobrepeso para la Edad Gestacional";
+			} else if (isInRange(bmi, 31, true, 40, true)) {
+				classification += "Obesidad para la Edad Gestacional";
+			}
+		} else if (isInRange(gestationWeek, 21, true, 25, true)) {
+			if(isInRange(bmi, 15, true, 22, true)) {
+				classification += "Bajo Peso para la Edad Gestacional";
+			} else if (isInRange(bmi, 22, true, 26, true)) {
+				classification += "IMC Adecuado para la Edad Gestacional";
+			} else if (isInRange(bmi, 26, true, 31, true)) {
+				classification += "Sobrepeso para la Edad Gestacional";
+			} else if (isInRange(bmi, 31, true, 40, true)) {
+				classification += "Obesidad para la Edad Gestacional";
+			}
+		} else if (isInRange(gestationWeek, 26, true, 30, true)) {
+			if(isInRange(bmi, 15, true, 23, true)) {
+				classification += "Bajo Peso para la Edad Gestacional";
+			} else if (isInRange(bmi, 23, true, 27, true)) {
+				classification += "IMC Adecuado para la Edad Gestacional";
+			} else if (isInRange(bmi, 27, true, 32, true)) {
+				classification += "Sobrepeso para la Edad Gestacional";
+			} else if (isInRange(bmi, 32, true, 40, true)) {
+				classification += "Obesidad para la Edad Gestacional";
+			}
+		} else if (isInRange(gestationWeek, 31, true, 35, true) && isInRange(bmi, 15, true, 24, true)) {
+			if(isInRange(bmi, 15, true, 24, true)) {
+				classification += "Bajo Peso para la Edad Gestacional";
+			} else if (isInRange(bmi, 24, true, 28, true)) {
+				classification += "IMC Adecuado para la Edad Gestacional";
+			} else if (isInRange(bmi, 28, true, 32, true)) {
+				classification += "Sobrepeso para la Edad Gestacional";
+			} else if (isInRange(bmi, 32, true, 40, true)) {
+				classification += "Obesidad para la Edad Gestacional";
+			}
+		} else if (isInRange(gestationWeek, 36, true, 42, true) && isInRange(bmi, 15, true, 25, true)) {
+			if(isInRange(bmi, 15, true, 25, true)) {
+				classification += "Bajo Peso para la Edad Gestacional";
+			} else if (isInRange(bmi, 25, true, 29, true)) {
+				classification += "IMC Adecuado para la Edad Gestacional";
+			} else if (isInRange(bmi, 29, true, 33, true)) {
+				classification += "Sobrepeso para la Edad Gestacional";
+			} else if (isInRange(bmi, 33, true, 40, true)) {
+				classification += "Obesidad para la Edad Gestacional";
+			}
+		}
+		
+		return classification;
+	}
+	
+	/**
+	 * Given the pre-gestational weight, height, and gestational week of a woman, calculates the appropriate 
+	 * weight gain range for her, and returns it.
+	 * 
+	 * @param pregestationalWeight the pre-gestational weight of the woman.
+	 * @param height the height of the woman.
+	 * @param gestationalWeek the quantity of weeks the woman has been pregnant.
+	 * @return the appropriate weight gain range of the woman (Upper bound kg - Lower bound kg).
+	 */
+	public static String pregnantWeightGain(double pregestationalWeight, double height, int gestationalWeek) {
+		double pregestationalBMI = calculateBMI(pregestationalWeight, height);
+		
+		double weightGainLB = 0;
+		double weightGainUB = 0;
+		
+		gestationalWeek -= 12;
+		
+		if(pregestationalBMI < 20) {
+			weightGainLB = 2.3;
+			
+			if (gestationalWeek > 0) {
+				weightGainUB = weightGainLB + gestationalWeek * 0.6;
+				weightGainLB += gestationalWeek * 0.4;
+			}
+		} else if (isInRange(pregestationalBMI, 20, true, 24.9, true)) {
+			weightGainLB = 1.6;
+			
+			if(gestationalWeek > 0) {
+				weightGainUB = weightGainLB + gestationalWeek * 0.43;
+				weightGainLB += gestationalWeek * 0.33;
+								
+			}			
+		} else if (isInRange(pregestationalBMI, 25, true, 29.9, true)) {
+			weightGainLB = 0.9;
+			
+			if(gestationalWeek > 0) {
+				weightGainUB = weightGainLB + gestationalWeek * 0.33;
+				weightGainLB += gestationalWeek * 0.23;
+			}
+		} else {
+			if(gestationalWeek > 0) {
+				weightGainUB = gestationalWeek * 0.23;
+				weightGainLB = gestationalWeek * 0.2;
+			}
+		}
+		
+		return weightGainLB + " - " + weightGainUB;
+	}
+	
 	//--- AUXILIAR ---
 	
 	/**
@@ -382,5 +512,18 @@ public class Calculator {
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * Given the weight (in kilograms) and the height (in meters) of a person, calculates the BMI and returns it.
+	 * 
+	 * @param weight the weight to calculate the BMI.
+	 * @param height the height to calculate the BMI.
+	 * @return the calculated BMI.
+	 */
+	private static double calculateBMI(double weight, double height) {
+		double bmi = weight/(Math.pow(height, 2));
+		
+		return bmi;
 	}
 }
