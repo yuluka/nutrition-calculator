@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="MAIN_PANE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1017.0" prefWidth="1920.0" style="-fx-background-color: #73CFE8;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="LBL_TITTLE" layoutX="607.0" layoutY="22.0" text="Calculadora nutricional" textFill="WHITE">
+         <font>
+            <Font name="Vladimir Script" size="100.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="BTTN_LESS_FIVE_YEARS" fitHeight="400.0" fitWidth="400.0" layoutX="60.0" layoutY="193.0" onMouseClicked="#goToBabyCalculations" onMouseEntered="#showBttnHoverEffect" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Less-than-five-years.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="BTTN_MORE_FIVE_YEARS" fitHeight="400.0" fitWidth="400.0" layoutX="653.0" layoutY="193.0" onMouseClicked="#goToChildCalculations" onMouseEntered="#showBttnHoverEffect" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Over-five-years.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="BTTN_ADULT" fitHeight="400.0" fitWidth="589.0" layoutX="1246.0" layoutY="193.0" onMouseClicked="#goToAdultMenu" onMouseEntered="#showBttnHoverEffect" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Adult.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="BTTN_PREGNANT" fitHeight="400.0" fitWidth="447.0" layoutX="319.0" layoutY="596.0" onMouseClicked="#goToPregnantMenu" onMouseEntered="#showBttnHoverEffect" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Pregnant.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="BTTN_OLDIE" fitHeight="400.0" fitWidth="447.0" layoutX="1154.0" layoutY="602.0" onMouseClicked="#goToOldieMenu" onMouseEntered="#showBttnHoverEffect" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Oldie.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+   </children>
+</Pane>
