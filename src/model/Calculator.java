@@ -21,7 +21,7 @@ public class Calculator {
 		} else if (isInRange(indicator, 1, false, 2, true)) {
 			return "Riesgo de Sobrepeso";
 		} else if (isInRange(indicator, -1, true, 1, true)) {
-			return "Sobrepeso";
+			return "Peso Adecuado para la Talla";
 		} else if (isInRange(indicator, -2, true, -1, false)) {
 			return "Riesgo de Desnutrición Aguda";
 		} else if (isInRange(indicator, -3, true, -2, false)) {

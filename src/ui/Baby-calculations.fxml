@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
@@ -50,8 +52,11 @@
             <Font size="25.0" />
          </font>
       </RadioButton>
-      <VBox prefHeight="1017.0" prefWidth="306.0" style="-fx-background-color: white;" />
-      <TextField fx:id="TXT_INDICATOR" layoutX="576.0" layoutY="544.0" prefHeight="91.0" prefWidth="768.0" promptText="Introduzca el indicador antropométrico" style="-fx-background-radius: 15;">
+      <VBox fx:id="SIDE_MENU_PANE" prefHeight="1017.0" prefWidth="306.0" style="-fx-background-color: white;">
+         <children>
+            <Pane prefHeight="133.0" prefWidth="200.0" />
+         </children></VBox>
+      <TextField fx:id="TXT_INDICATOR" layoutX="576.0" layoutY="544.0" onKeyPressed="#checkKey" prefHeight="91.0" prefWidth="768.0" promptText="Introduzca el indicador antropométrico" style="-fx-background-radius: 15;">
          <font>
             <Font size="40.0" />
          </font>
@@ -59,5 +64,31 @@
             <Insets />
          </opaqueInsets>
       </TextField>
+      <Button fx:id="BTTN_CALCULATE" layoutX="849.0" layoutY="709.0" mnemonicParsing="false" onMouseClicked="#calculateClassification" prefHeight="51.0" prefWidth="154.0" style="-fx-background-radius: 10; -fx-background-color: white;" text="Calcular">
+         <font>
+            <Font size="30.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="LBL_RESULT" layoutX="668.0" layoutY="850.0" prefHeight="100.0" prefWidth="584.0" style="-fx-background-color: white;" text="Resultado:" textOverrun="CLIP">
+         <font>
+            <Font name="Arial" size="30.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="BTTN_GO_HOME_PAGE" fitHeight="133.0" fitWidth="171.0" layoutX="125.0" onMouseClicked="#goToHomePage" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <image>
+            <Image url="@../images/Logo%203%20no%20background.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="BTTN_SIDE_MENU" layoutX="11.0" layoutY="20.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="101.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </Pane>
