@@ -63,7 +63,61 @@ public class BabyCalculations implements Initializable {
     
     @FXML
     private Button BTTN_CALCULATE;
+    
+    @FXML
+    private ImageView BTTN_LESS_FIVE_YEARS;
 
+    @FXML
+    private Label BTTN_LBL_LESS_FIVE_YEARS;
+
+    @FXML
+    private Label BTTN_BABY_CALCULATIONS;
+
+    @FXML
+    private ImageView BTTN_CHILD;
+
+    @FXML
+    private Label BTTN_LBL_CHILD;
+
+    @FXML
+    private Label BTTN_CHILD_CALCULATIONS;
+
+    @FXML
+    private ImageView BTTN_ADULT;
+
+    @FXML
+    private Label BTTN_LBL_ADULT;
+
+    @FXML
+    private Label BTTN_ADULT_CALCULATE_BMI;
+
+    @FXML
+    private Label BTTN_ADULT_CALCULATE_IDEAL_WEIGHT;
+
+    @FXML
+    private Label BTTN_ADULT_CALCULATE_CARDIO_RISK;
+
+    @FXML
+    private Label BTTN_ADULT_CALCULATE_BODY_FAT;
+
+    @FXML
+    private ImageView BTTN_PREGNANT;
+
+    @FXML
+    private Label BTTN_LBL_PREGNANT;
+
+    @FXML
+    private Label BTTN_PREGNANT_CALCULATE_BMI;
+
+    @FXML
+    private Label BTTN_PREGNANT_WEIGHT_GAIN;
+
+    @FXML
+    private ImageView BTTN_OLDIE;
+
+    @FXML
+    private Label BTTN_LBL_OLDIE;
+    
     @FXML
     private Label LBL_RESULT;
     
@@ -159,6 +213,10 @@ public class BabyCalculations implements Initializable {
 		} catch (FileNotFoundException e) {
 			
 		}
+		
+		BTTN_BABY_CALCULATIONS.setText("Clasificación\nAntropométrica");
+		BTTN_CHILD_CALCULATIONS.setText("Clasificación\nAntropométrica");
+		BTTN_ADULT_CALCULATE_CARDIO_RISK.setText("Riesgo\nCardiovascular");
 		
 		setBttnEffects();
 		setSideMenuBttnEffects();

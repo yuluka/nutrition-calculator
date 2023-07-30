@@ -52,9 +52,173 @@
             <Font size="25.0" />
          </font>
       </RadioButton>
-      <VBox fx:id="SIDE_MENU_PANE" prefHeight="1017.0" prefWidth="306.0" style="-fx-background-color: white;">
+      <VBox fx:id="SIDE_MENU_PANE" prefHeight="1017.0" prefWidth="306.0" style="-fx-background-color: white; -fx-spacing: 25;">
          <children>
             <Pane prefHeight="133.0" prefWidth="200.0" />
+            <Pane prefHeight="120.0" prefWidth="306.0">
+               <children>
+                  <ImageView fx:id="BTTN_LESS_FIVE_YEARS" fitHeight="64.0" fitWidth="62.0" layoutX="12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Less-than-five-years.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label fx:id="BTTN_LBL_LESS_FIVE_YEARS" layoutX="98.0" layoutY="14.0" prefHeight="36.0" text="Menor de 5 Años">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label fx:id="BTTN_BABY_CALCULATIONS" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="62.0" prefHeight="56.0" text="Clasificación Antropométrica">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane prefHeight="120.0" prefWidth="306.0">
+               <children>
+                  <ImageView fx:id="BTTN_CHILD" fitHeight="64.0" fitWidth="62.0" layoutX="12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Over-five-years.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label fx:id="BTTN_LBL_CHILD" layoutX="98.0" layoutY="14.0" prefHeight="36.0" text="Mayor de 5 Años">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label fx:id="BTTN_CHILD_CALCULATIONS" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="62.0" prefHeight="56.0" text="Clasificación Antropométrica">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane prefHeight="204.0" prefWidth="306.0">
+               <children>
+                  <ImageView fx:id="BTTN_ADULT" fitHeight="64.0" fitWidth="62.0" layoutX="12.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Adult.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label fx:id="BTTN_LBL_ADULT" layoutX="98.0" layoutY="14.0" prefHeight="36.0" text="Adulto">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label fx:id="BTTN_ADULT_CALCULATE_BMI" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="53.0" prefHeight="28.0" prefWidth="171.0" text="IMC">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label fx:id="BTTN_ADULT_CALCULATE_IDEAL_WEIGHT" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="81.0" prefHeight="28.0" prefWidth="171.0" text="Peso Ideal">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label fx:id="BTTN_ADULT_CALCULATE_CARDIO_RISK" accessibleRole="TEXT_AREA" alignment="TOP_LEFT" layoutX="138.0" layoutY="109.0" prefHeight="56.0" prefWidth="171.0" text="Riesgo Cardiovascular">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label fx:id="BTTN_ADULT_CALCULATE_BODY_FAT" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="165.0" prefHeight="28.0" prefWidth="171.0" text="Grasa Corporal">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane prefHeight="120.0" prefWidth="306.0">
+               <children>
+                  <ImageView fx:id="BTTN_PREGNANT" fitHeight="64.0" fitWidth="62.0" layoutX="12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Pregnant.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label fx:id="BTTN_LBL_PREGNANT" layoutX="98.0" layoutY="14.0" prefHeight="36.0" text="Gestante">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label fx:id="BTTN_PREGNANT_CALCULATE_BMI" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="62.0" prefHeight="28.0" prefWidth="171.0" text="IMC">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label fx:id="BTTN_PREGNANT_WEIGHT_GAIN" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="90.0" prefHeight="28.0" prefWidth="171.0" text="Ganancia de Peso">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane prefHeight="120.0" prefWidth="306.0">
+               <children>
+                  <ImageView fx:id="BTTN_OLDIE" fitHeight="64.0" fitWidth="62.0" layoutX="12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Oldie.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label fx:id="BTTN_LBL_OLDIE" layoutX="98.0" layoutY="14.0" prefHeight="36.0" text="Adulto Mayor">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </Pane>
          </children></VBox>
       <TextField fx:id="TXT_INDICATOR" layoutX="576.0" layoutY="544.0" onKeyPressed="#checkKey" prefHeight="91.0" prefWidth="768.0" promptText="Introduzca el indicador antropométrico" style="-fx-background-radius: 15;">
          <font>
@@ -85,7 +249,7 @@
             <Image url="@../images/Logo%203%20no%20background.png" />
          </image>
       </ImageView>
-      <Button fx:id="BTTN_SIDE_MENU" layoutX="11.0" layoutY="20.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="101.0">
+      <Button fx:id="BTTN_SIDE_MENU" layoutX="11.0" layoutY="20.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="101.0" style="-fx-border-image-width: 0; -fx-border-width: 0;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
