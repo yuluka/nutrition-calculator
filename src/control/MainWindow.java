@@ -81,8 +81,19 @@ public class MainWindow implements Initializable {
 
     
     @FXML
-    public void goToAdultMenu(MouseEvent event) {
+    public void goToAdultMenu(MouseEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Adult-menu.fxml"));
+    	loader.setController(new AdultMenu());
+    	Parent root = loader.load();
     	
+    	Scene sc = new Scene(root);
+    	Stage st = new Stage();
+    	st.setScene(sc);
+    	st.setMaximized(true);
+    	st.show();
+    	
+    	Stage aux = (Stage) BTTN_ADULT.getScene().getWindow();
+    	aux.close();
     }
     
     @FXML

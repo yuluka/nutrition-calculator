@@ -275,8 +275,20 @@ public class BabyCalculations implements Initializable {
     }
 
     @FXML
-    void goToAdultMenu(MouseEvent event) {
-
+    void goToAdultMenu(MouseEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Adult-menu.fxml"));
+		loader.setController(new AdultMenu());
+		Parent root = loader.load();
+		
+		Scene sc = new Scene(root);
+		Stage st = new Stage();
+		st.setScene(sc);
+		st.setMaximized(true);
+		
+		st.show();
+		
+		Stage aux = (Stage) BTTN_GO_HOME_PAGE.getScene().getWindow();
+		aux.close();
     }
 
     // --- ON ACTION METHODS FOR PREGNANT CALCULATIONS BUTTONS ---
