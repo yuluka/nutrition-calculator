@@ -17,7 +17,7 @@
    <children>
       <ImageView fitHeight="1017.0" fitWidth="1200.0" layoutX="360.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Baby.png" />
+            <Image url="@../images/Over-five-years%202.png" />
          </image>
       </ImageView>
       <Label fx:id="LBL_TITTLE" layoutX="345.0" layoutY="22.0" minHeight="-Infinity" minWidth="-Infinity" text="Calcular clasificación antropométrica" textFill="WHITE">
@@ -25,33 +25,40 @@
             <Font name="Vladimir Script" size="100.0" />
          </font>
       </Label>
-      <RadioButton fx:id="RB_WEIGHT_FOR_SIZE" layoutX="765.0" layoutY="209.0" mnemonicParsing="false" prefHeight="51.0" text="Peso para la Talla">
+      <RadioButton fx:id="RB_SIZE_FOR_AGE" layoutX="765.0" layoutY="330.0" mnemonicParsing="false" prefHeight="51.0" text="Talla para la Edad">
+         <font>
+            <Font size="25.0" />
+         </font>
          <toggleGroup>
             <ToggleGroup fx:id="calculations" />
          </toggleGroup>
-         <font>
-            <Font size="25.0" />
-         </font></RadioButton>
-      <RadioButton fx:id="RB_SIZE_FOR_AGE" layoutX="765.0" layoutY="260.0" mnemonicParsing="false" prefHeight="51.0" text="Talla para la Edad" toggleGroup="$calculations">
+      </RadioButton>
+      <RadioButton fx:id="RB_BMI_FOR_AGE" layoutX="765.0" layoutY="381.0" mnemonicParsing="false" prefHeight="51.0" text="IMC para la Edad" toggleGroup="$calculations">
          <font>
             <Font size="25.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="RB_HEAD_FOR_AGE" layoutX="765.0" layoutY="311.0" mnemonicParsing="false" prefHeight="51.0" text="Perímetro Cefálico para la Edad" toggleGroup="$calculations">
+      <TextField fx:id="TXT_INDICATOR" layoutX="576.0" layoutY="544.0" onKeyPressed="#checkKey" prefHeight="91.0" prefWidth="768.0" promptText="Introduzca el indicador antropométrico" style="-fx-background-radius: 15;">
          <font>
-            <Font size="25.0" />
+            <Font size="40.0" />
          </font>
-      </RadioButton>
-      <RadioButton fx:id="RB_BMI_FOR_AGE" layoutX="765.0" layoutY="362.0" mnemonicParsing="false" prefHeight="51.0" text="IMC para la Edad" toggleGroup="$calculations">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <Button fx:id="BTTN_CALCULATE" layoutX="849.0" layoutY="709.0" mnemonicParsing="false" onMouseClicked="#calculateClassification" prefHeight="51.0" prefWidth="154.0" style="-fx-background-radius: 10; -fx-background-color: white;" text="Calcular">
          <font>
-            <Font size="25.0" />
+            <Font size="30.0" />
          </font>
-      </RadioButton>
-      <RadioButton fx:id="RB_WEIGHT_FOR_AGE" layoutX="765.0" layoutY="413.0" mnemonicParsing="false" prefHeight="51.0" text="Peso para la Edad" toggleGroup="$calculations">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="LBL_RESULT" layoutX="668.0" layoutY="850.0" prefHeight="100.0" prefWidth="584.0" style="-fx-background-color: white;" text="Resultado:" textOverrun="CLIP">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="30.0" />
          </font>
-      </RadioButton>
+      </Label>
       <VBox fx:id="SIDE_MENU_PANE" prefHeight="1017.0" prefWidth="306.0" style="-fx-background-color: white; -fx-spacing: 25;">
          <children>
             <Pane prefHeight="133.0" prefWidth="200.0" />
@@ -219,28 +226,8 @@
                   </Label>
                </children>
             </Pane>
-         </children></VBox>
-      <TextField fx:id="TXT_INDICATOR" layoutX="576.0" layoutY="544.0" onKeyPressed="#checkKey" prefHeight="91.0" prefWidth="768.0" promptText="Introduzca el indicador antropométrico" style="-fx-background-radius: 15;">
-         <font>
-            <Font size="40.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </TextField>
-      <Button fx:id="BTTN_CALCULATE" layoutX="849.0" layoutY="709.0" mnemonicParsing="false" onMouseClicked="#calculateClassification" prefHeight="51.0" prefWidth="154.0" style="-fx-background-radius: 10; -fx-background-color: white;" text="Calcular">
-         <font>
-            <Font size="30.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Label fx:id="LBL_RESULT" layoutX="668.0" layoutY="850.0" prefHeight="100.0" prefWidth="584.0" style="-fx-background-color: white;" text="Resultado:" textOverrun="CLIP">
-         <font>
-            <Font name="Arial" size="30.0" />
-         </font>
-      </Label>
+         </children>
+      </VBox>
       <ImageView fx:id="BTTN_GO_HOME_PAGE" fitHeight="133.0" fitWidth="171.0" layoutX="125.0" onMouseClicked="#goToHomePage" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />

@@ -41,12 +41,12 @@ public class MainWindow implements Initializable {
     @FXML
     private ImageView BTTN_OLDIE;
 
-    @FXML
-    public void goToAdultMenu(MouseEvent event) {
-    	
-    }
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		installTooltips();
+	}
 
-    @FXML
+	@FXML
     public void goToBabyCalculations(MouseEvent event) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Baby-calculations.fxml"));
     	loader.setController(new BabyCalculations());
@@ -63,24 +63,39 @@ public class MainWindow implements Initializable {
     }
 
     @FXML
-    public void goToChildCalculations(MouseEvent event) {
-    	
+    public void goToChildCalculations(MouseEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Child-calculations.fxml"));
+		loader.setController(new ChildCalculations());
+		Parent root = loader.load();
+		
+		Scene sc = new Scene(root);
+		Stage st = new Stage();
+		st.setScene(sc);
+		st.setMaximized(true);
+		
+		st.show();
+		
+		Stage aux = (Stage) BTTN_ADULT.getScene().getWindow();
+		aux.close();
     }
 
+    
     @FXML
-    public void goToOldieMenu(MouseEvent event) {
+    public void goToAdultMenu(MouseEvent event) {
     	
     }
-
+    
     @FXML
     public void goToPregnantMenu(MouseEvent event) {
     	
     }
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		installTooltips();
-	}
+    
+    @FXML
+    public void goToOldieMenu(MouseEvent event) {
+    	
+    }
+    
+    // --- METHODS FOR VISUAL EFFECTS ---
 	
     @FXML
     void showBttnHoverEffect(MouseEvent event) {
@@ -129,19 +144,19 @@ public class MainWindow implements Initializable {
     }
     
     public void installTooltips() {
-    		Tooltip t = new Tooltip("Ir a cálculos para menores de 5 años");
-        	Tooltip.install(BTTN_LESS_FIVE_YEARS, t);
-        	
-    		t = new Tooltip("Ir a cálculos para mayores de 5 años");
-        	Tooltip.install(BTTN_MORE_FIVE_YEARS, t);
-        	
-			t = new Tooltip("Ir al menú de cálculos para adultos");
-        	Tooltip.install(BTTN_ADULT, t);
-        	
-			t = new Tooltip("Ir al menú de cálculos para gestantes");
-        	Tooltip.install(BTTN_PREGNANT, t);
-        	
-			t = new Tooltip("Ir al menú de cálculos para adultos mayores");
-        	Tooltip.install(BTTN_OLDIE, t);
+		Tooltip t = new Tooltip("Ir a cálculos para menores de 5 años");
+    	Tooltip.install(BTTN_LESS_FIVE_YEARS, t);
+    	
+		t = new Tooltip("Ir a cálculos para mayores de 5 años");
+    	Tooltip.install(BTTN_MORE_FIVE_YEARS, t);
+    	
+		t = new Tooltip("Ir al menú de cálculos para adultos");
+    	Tooltip.install(BTTN_ADULT, t);
+    	
+		t = new Tooltip("Ir al menú de cálculos para gestantes");
+    	Tooltip.install(BTTN_PREGNANT, t);
+    	
+		t = new Tooltip("Ir al menú de cálculos para adultos mayores");
+    	Tooltip.install(BTTN_OLDIE, t);
     }
 }

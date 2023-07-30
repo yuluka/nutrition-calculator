@@ -14,12 +14,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -32,8 +32,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Calculator;
 
-public class BabyCalculations implements Initializable {
-
+public class ChildCalculations implements Initializable {
     @FXML
     private Pane MAIN_PANE;
 
@@ -41,29 +40,17 @@ public class BabyCalculations implements Initializable {
     private Label LBL_TITTLE;
 
     @FXML
-    private RadioButton RB_WEIGHT_FOR_SIZE;
-    
-    @FXML
-    private ToggleGroup calculations;
-
-    @FXML
     private RadioButton RB_SIZE_FOR_AGE;
 
     @FXML
-    private RadioButton RB_HEAD_FOR_AGE;
+    private ToggleGroup calculations;
 
     @FXML
     private RadioButton RB_BMI_FOR_AGE;
 
     @FXML
-    private RadioButton RB_WEIGHT_FOR_AGE;
+    private VBox SIDE_MENU_PANE;
 
-    @FXML
-    private TextField TXT_INDICATOR;
-    
-    @FXML
-    private Button BTTN_CALCULATE;
-    
     @FXML
     private ImageView BTTN_LESS_FIVE_YEARS;
 
@@ -117,18 +104,21 @@ public class BabyCalculations implements Initializable {
 
     @FXML
     private Label BTTN_LBL_OLDIE;
-    
+
+    @FXML
+    private TextField TXT_INDICATOR;
+
+    @FXML
+    private Button BTTN_CALCULATE;
+
     @FXML
     private Label LBL_RESULT;
-    
+
     @FXML
     private ImageView BTTN_GO_HOME_PAGE;
 
     @FXML
     private Button BTTN_SIDE_MENU;
-
-    @FXML
-    private VBox SIDE_MENU_PANE;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -149,7 +139,7 @@ public class BabyCalculations implements Initializable {
 	}
     
 	// --- METHODS FOR HANDLING THE CURRENT SCREEN CALCULATIONS ---
-	
+
     @FXML
     void goToHomePage(MouseEvent event) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/MainWindow.fxml"));
@@ -174,16 +164,10 @@ public class BabyCalculations implements Initializable {
     		
     		String result = "Resultado: ";
     		
-    		if (RB_WEIGHT_FOR_SIZE.isSelected()) {
-				result += Calculator.weightForSize(indicator);
-			} else if (RB_SIZE_FOR_AGE.isSelected()) {
+    		if (RB_SIZE_FOR_AGE.isSelected()) {
 				result += Calculator.sizeForAge(indicator);
-			} else if (RB_HEAD_FOR_AGE.isSelected()) {
-				result += Calculator.headCircumferenceForAge(indicator);
 			} else if (RB_BMI_FOR_AGE.isSelected()) {
-				result += Calculator.BMIForAge(indicator);
-			} else if (RB_WEIGHT_FOR_AGE.isSelected()) {
-				result += Calculator.weightForAge(indicator);
+				result += Calculator.BMIForAge5YearsOlder(indicator);
 			} else {
 				showNoClassificationSelectedAlert();
 			}
@@ -217,28 +201,22 @@ public class BabyCalculations implements Initializable {
 		a.show();
 	}
     
+
     @FXML
     void checkKey(KeyEvent event) {
     	if(event.getCode().equals(KeyCode.ENTER)) {
     		calculateClassification(null);
     	}
     }
-
-// -------------------- METHODS FOR HANDLING SIDE MENU BUTTONS --------------------
+    
+ // -------------------- METHODS FOR HANDLING SIDE MENU BUTTONS --------------------
     
     // --- ON ACTION METHODS FOR BABY CALCULATIONS BUTTONS ---
     
     @FXML
-    void goToBabyCalcs(MouseEvent event) {
-    	// No code here 'cause we're already in the target screen of this method.
-    }
-
-    // --- ON ACTION METHODS FOR CHILD CALCULATIONS BUTTONS ---
-    
-    @FXML
-    void goToChildClacs(MouseEvent event) throws IOException {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Child-calculations.fxml"));
-		loader.setController(new ChildCalculations());
+    void goToBabyCalcs(MouseEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Baby-calculations.fxml"));
+		loader.setController(new BabyCalculations());
 		Parent root = loader.load();
 		
 		Scene sc = new Scene(root);
@@ -252,6 +230,13 @@ public class BabyCalculations implements Initializable {
 		aux.close();
     }
 
+    // --- ON ACTION METHODS FOR CHILD CALCULATIONS BUTTONS ---
+
+    @FXML
+    void goToChildClacs(MouseEvent event) {
+    	// No code here 'cause we're already in the target screen of this method.
+    }
+    
     // --- ON ACTION METHODS FOR ADULT CALCULATIONS BUTTONS ---
     
     @FXML
@@ -280,7 +265,7 @@ public class BabyCalculations implements Initializable {
     }
 
     // --- ON ACTION METHODS FOR PREGNANT CALCULATIONS BUTTONS ---
-    
+
     @FXML
     void goToPregnantBMICalc(MouseEvent event) {
 
@@ -295,16 +280,16 @@ public class BabyCalculations implements Initializable {
     void goToPregnantWeightGainCalc(MouseEvent event) {
 
     }
-
-    // --- ON ACTION METHODS FOR OLDIE CALCULATIONS BUTTONS ---
     
+    // --- ON ACTION METHODS FOR OLDIE CALCULATIONS BUTTONS ---
+
     @FXML
     void goToOldieMenu(MouseEvent event) {
 
     }
-	
+
     // --- METHODS FOR VISUAL EFFECTS ---
-    
+
 	/**
 	 * Sets the hover effects for the button to make the calculations.
 	 */
