@@ -57,7 +57,7 @@
             <Pane prefHeight="133.0" prefWidth="200.0" />
             <Pane prefHeight="120.0" prefWidth="306.0">
                <children>
-                  <ImageView fx:id="BTTN_LESS_FIVE_YEARS" fitHeight="64.0" fitWidth="62.0" layoutX="12.0" onMouseClicked="#goToBabyCalcs" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="BTTN_LESS_FIVE_YEARS" fitHeight="64.0" fitWidth="62.0" layoutX="12.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Less-than-five-years.png" />
                      </image>
@@ -65,7 +65,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Label fx:id="BTTN_LBL_LESS_FIVE_YEARS" layoutX="98.0" layoutY="14.0" onMouseClicked="#goToBabyCalcs" prefHeight="36.0" text="Menor de 5 Años">
+                  <Label fx:id="BTTN_LBL_LESS_FIVE_YEARS" layoutX="98.0" layoutY="14.0" prefHeight="36.0" text="Menor de 5 Años">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -73,7 +73,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label fx:id="BTTN_BABY_CALCULATIONS" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="62.0" onMouseClicked="#goToBabyCalcs" prefHeight="56.0" text="Clasificación Antropométrica">
+                  <Label fx:id="BTTN_BABY_CALCULATIONS" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="62.0" prefHeight="56.0" text="Clasificación Antropométrica">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -85,7 +85,7 @@
             </Pane>
             <Pane prefHeight="120.0" prefWidth="306.0">
                <children>
-                  <ImageView fx:id="BTTN_CHILD" fitHeight="64.0" fitWidth="62.0" layoutX="12.0" onMouseClicked="#goToChildClacs" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="BTTN_CHILD" fitHeight="64.0" fitWidth="62.0" layoutX="12.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Over-five-years.png" />
                      </image>
@@ -93,7 +93,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Label fx:id="BTTN_LBL_CHILD" layoutX="98.0" layoutY="14.0" onMouseClicked="#goToChildClacs" prefHeight="36.0" text="Mayor de 5 Años">
+                  <Label fx:id="BTTN_LBL_CHILD" layoutX="98.0" layoutY="14.0" prefHeight="36.0" text="Mayor de 5 Años">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -101,7 +101,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label fx:id="BTTN_CHILD_CALCULATIONS" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="62.0" onMouseClicked="#goToChildClacs" prefHeight="56.0" text="Clasificación Antropométrica">
+                  <Label fx:id="BTTN_CHILD_CALCULATIONS" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="62.0" prefHeight="56.0" text="Clasificación Antropométrica">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -113,7 +113,7 @@
             </Pane>
             <Pane prefHeight="204.0" prefWidth="306.0">
                <children>
-                  <ImageView fx:id="BTTN_ADULT" fitHeight="64.0" fitWidth="62.0" layoutX="12.0" layoutY="10.0" onMouseClicked="#goToAdultMenu" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="BTTN_ADULT" fitHeight="64.0" fitWidth="62.0" layoutX="12.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Adult.png" />
                      </image>
@@ -121,7 +121,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Label fx:id="BTTN_LBL_ADULT" layoutX="98.0" layoutY="14.0" onMouseClicked="#goToAdultMenu" prefHeight="36.0" text="Adulto">
+                  <Label fx:id="BTTN_LBL_ADULT" layoutX="98.0" layoutY="14.0" prefHeight="36.0" text="Adulto">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -129,7 +129,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label fx:id="BTTN_ADULT_CALCULATE_BMI" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="53.0" onMouseClicked="#goToAdultBMICalc" prefHeight="28.0" prefWidth="171.0" text="IMC">
+                  <Label fx:id="BTTN_ADULT_CALCULATE_BMI" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="53.0" prefHeight="28.0" prefWidth="171.0" text="IMC">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -137,7 +137,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label fx:id="BTTN_ADULT_CALCULATE_IDEAL_WEIGHT" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="81.0" onMouseClicked="#goToAdultIdealWeightCalc" prefHeight="28.0" prefWidth="171.0" text="Peso Ideal">
+                  <Label fx:id="BTTN_ADULT_CALCULATE_IDEAL_WEIGHT" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="81.0" prefHeight="28.0" prefWidth="171.0" text="Peso Ideal">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -145,7 +145,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label fx:id="BTTN_ADULT_CALCULATE_CARDIO_RISK" accessibleRole="TEXT_AREA" alignment="TOP_LEFT" layoutX="138.0" layoutY="109.0" onMouseClicked="#goToAdultCardiovascularRiskCalc" prefHeight="56.0" prefWidth="171.0" text="Riesgo Cardiovascular">
+                  <Label fx:id="BTTN_ADULT_CALCULATE_CARDIO_RISK" accessibleRole="TEXT_AREA" alignment="TOP_LEFT" layoutX="138.0" layoutY="109.0" prefHeight="56.0" prefWidth="171.0" text="Riesgo Cardiovascular">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -153,7 +153,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label fx:id="BTTN_ADULT_CALCULATE_BODY_FAT" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="165.0" onMouseClicked="#goToAdultBodyFatCalc" prefHeight="28.0" prefWidth="171.0" text="Grasa Corporal">
+                  <Label fx:id="BTTN_ADULT_CALCULATE_BODY_FAT" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="165.0" prefHeight="28.0" prefWidth="171.0" text="Grasa Corporal">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -165,7 +165,7 @@
             </Pane>
             <Pane prefHeight="120.0" prefWidth="306.0">
                <children>
-                  <ImageView fx:id="BTTN_PREGNANT" fitHeight="64.0" fitWidth="62.0" layoutX="12.0" onMouseClicked="#goToPregnantMenu" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="BTTN_PREGNANT" fitHeight="64.0" fitWidth="62.0" layoutX="12.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Pregnant.png" />
                      </image>
@@ -173,7 +173,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Label fx:id="BTTN_LBL_PREGNANT" layoutX="98.0" layoutY="14.0" onMouseClicked="#goToPregnantMenu" prefHeight="36.0" text="Gestante">
+                  <Label fx:id="BTTN_LBL_PREGNANT" layoutX="98.0" layoutY="14.0" prefHeight="36.0" text="Gestante">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -181,7 +181,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label fx:id="BTTN_PREGNANT_CALCULATE_BMI" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="62.0" onMouseClicked="#goToPregnantBMICalc" prefHeight="28.0" prefWidth="171.0" text="IMC">
+                  <Label fx:id="BTTN_PREGNANT_CALCULATE_BMI" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="62.0" prefHeight="28.0" prefWidth="171.0" text="IMC">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -189,7 +189,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label fx:id="BTTN_PREGNANT_WEIGHT_GAIN" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="90.0" onMouseClicked="#goToPregnantWeightGainCalc" prefHeight="28.0" prefWidth="171.0" text="Ganancia de Peso">
+                  <Label fx:id="BTTN_PREGNANT_WEIGHT_GAIN" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="90.0" prefHeight="28.0" prefWidth="171.0" text="Ganancia de Peso">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -201,7 +201,7 @@
             </Pane>
             <Pane prefHeight="120.0" prefWidth="306.0">
                <children>
-                  <ImageView fx:id="BTTN_OLDIE" fitHeight="64.0" fitWidth="62.0" layoutX="12.0" onMouseClicked="#goToOldieMenu" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="BTTN_OLDIE" fitHeight="64.0" fitWidth="62.0" layoutX="12.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Oldie.png" />
                      </image>
@@ -209,7 +209,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Label fx:id="BTTN_LBL_OLDIE" layoutX="98.0" layoutY="14.0" onMouseClicked="#goToOldieMenu" prefHeight="36.0" text="Adulto Mayor">
+                  <Label fx:id="BTTN_LBL_OLDIE" layoutX="98.0" layoutY="14.0" prefHeight="36.0" text="Adulto Mayor">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -241,7 +241,7 @@
             <Font name="Arial" size="30.0" />
          </font>
       </Label>
-      <ImageView fx:id="BTTN_GO_HOME_PAGE" fitHeight="133.0" fitWidth="171.0" layoutX="125.0" onMouseClicked="#goToHomePage" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="BTTN_GO_HOME_PAGE" fitHeight="133.0" fitWidth="171.0" layoutX="125.0" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

@@ -1,6 +1,5 @@
 package control;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -8,10 +7,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
@@ -108,8 +104,16 @@ public class AdultMenu implements Initializable {
     @FXML
     private Button BTTN_SIDE_MENU;
 
+	private SideMenu smenu;
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		MAIN_PANE.setOnMouseMoved(e -> configureSideMenu());	
+	}
+	
+	public void configureSideMenu() {
+		smenu = new SideMenu((Stage) MAIN_PANE.getScene().getWindow(), SIDE_MENU_PANE, BTTN_SIDE_MENU);
+	
 		BTTN_BABY_CALCULATIONS.setText("Clasificación\nAntropométrica");
 		BTTN_CHILD_CALCULATIONS.setText("Clasificación\nAntropométrica");
 		BTTN_ADULT_CALCULATE_CARDIO_RISK.setText("Riesgo\nCardiovascular");
@@ -118,66 +122,50 @@ public class AdultMenu implements Initializable {
 		setSideMenuBttnEffects();
 		
 		installTooltips();
+		
+		BTTN_GO_HOME_PAGE.setOnMouseClicked(e -> smenu.goToHomePage());
+		
+		//Baby
+		BTTN_LESS_FIVE_YEARS.setOnMouseClicked(e -> smenu.goToBabyCalcs());
+		
+		BTTN_LBL_LESS_FIVE_YEARS.setOnMouseClicked(e -> smenu.goToBabyCalcs());
+		
+		BTTN_BABY_CALCULATIONS.setOnMouseClicked(e -> smenu.goToBabyCalcs());
+		
+		//Child
+		BTTN_CHILD.setOnMouseClicked(e -> smenu.goToChildClacs());
+		
+		BTTN_LBL_CHILD.setOnMouseClicked(e -> smenu.goToChildClacs());
+		
+		BTTN_CHILD_CALCULATIONS.setOnMouseClicked(e -> smenu.goToChildClacs());
+		
+		//Adult
+		BTTN_ADULT.setOnMouseClicked(e -> smenu.goToAdultMenu());
+		
+		BTTN_LBL_ADULT.setOnMouseClicked(e -> smenu.goToAdultMenu());
+		
+		BTTN_ADULT_CALCULATE_BMI.setOnMouseClicked(e -> smenu.goToAdultBMICalc());
+		
+		BTTN_ADULT_CALCULATE_IDEAL_WEIGHT.setOnMouseClicked(e -> smenu.goToAdultIdealWeightCalc());
+		
+		BTTN_ADULT_CALCULATE_CARDIO_RISK.setOnMouseClicked(e -> smenu.goToAdultCardiovascularRiskCalc());
+
+		BTTN_ADULT_CALCULATE_BODY_FAT.setOnMouseClicked(e -> smenu.goToAdultBodyFatCalc());
+		
+		//Pregnant
+		BTTN_PREGNANT.setOnMouseClicked(e -> smenu.goToPregnantMenu());
+
+		BTTN_LBL_PREGNANT.setOnMouseClicked(e -> smenu.goToPregnantMenu());
+		
+		BTTN_PREGNANT_CALCULATE_BMI.setOnMouseClicked(e -> smenu.goToPregnantBMICalc());
+		
+		BTTN_PREGNANT_WEIGHT_GAIN.setOnMouseClicked(e -> smenu.goToPregnantWeightGainCalc());
+		
+		//Oldie
+		BTTN_OLDIE.setOnMouseClicked(e -> smenu.goToOldieMenu());
 	}
 	
-    @FXML
-    void goToHomePage(MouseEvent event) throws IOException {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/MainWindow.fxml"));
-		loader.setController(new MainWindow());
-		Parent root = loader.load();
-		
-		Scene sc = new Scene(root);
-		Stage st = new Stage();
-		st.setScene(sc);
-		st.setMaximized(true);
-		
-		st.show();
-		
-		Stage aux = (Stage) BTTN_GO_HOME_PAGE.getScene().getWindow();
-		aux.close();
-    }
-	
- // -------------------- METHODS FOR HANDLING SIDE MENU BUTTONS --------------------
-    
-    // --- ON ACTION METHODS FOR BABY CALCULATIONS BUTTONS ---
-    
-    @FXML
-    void goToBabyCalcs(MouseEvent event) throws IOException {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Baby-calculations.fxml"));
-		loader.setController(new BabyCalculations());
-		Parent root = loader.load();
-		
-		Scene sc = new Scene(root);
-		Stage st = new Stage();
-		st.setScene(sc);
-		st.setMaximized(true);
-		
-		st.show();
-		
-		Stage aux = (Stage) BTTN_GO_HOME_PAGE.getScene().getWindow();
-		aux.close();
-    }
-
-    // --- ON ACTION METHODS FOR CHILD CALCULATIONS BUTTONS ---
-
-    @FXML
-    void goToChildClacs(MouseEvent event) throws IOException {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Child-calculations.fxml"));
-		loader.setController(new ChildCalculations());
-		Parent root = loader.load();
-		
-		Scene sc = new Scene(root);
-		Stage st = new Stage();
-		st.setScene(sc);
-		st.setMaximized(true);
-		
-		st.show();
-		
-		Stage aux = (Stage) BTTN_GO_HOME_PAGE.getScene().getWindow();
-		aux.close();
-    }
-    
-    // --- ON ACTION METHODS FOR ADULT CALCULATIONS BUTTONS ---
+	// --- ON ACTION METHODS FOR THE CURRENT SCREEN ---
     
     @FXML
     void goToAdultBMICalc(MouseEvent event) {
@@ -198,36 +186,7 @@ public class AdultMenu implements Initializable {
     void goToAdultIdealWeightCalc(MouseEvent event) {
 
     }
-
-    @FXML
-    void goToAdultMenu(MouseEvent event) {
-    	// No code here 'cause we're already in the target screen of this method.
-    }
-
-    // --- ON ACTION METHODS FOR PREGNANT CALCULATIONS BUTTONS ---
-
-    @FXML
-    void goToPregnantBMICalc(MouseEvent event) {
-
-    }
-
-    @FXML
-    void goToPregnantMenu(MouseEvent event) {
-
-    }
-
-    @FXML
-    void goToPregnantWeightGainCalc(MouseEvent event) {
-
-    }
-    
-    // --- ON ACTION METHODS FOR OLDIE CALCULATIONS BUTTONS ---
-
-    @FXML
-    void goToOldieMenu(MouseEvent event) {
-
-    }
-    
+	
     // --- METHODS FOR VISUAL EFFECTS ---
 
     @FXML

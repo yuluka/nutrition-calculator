@@ -97,8 +97,19 @@ public class MainWindow implements Initializable {
     }
     
     @FXML
-    public void goToPregnantMenu(MouseEvent event) {
+    public void goToPregnantMenu(MouseEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Pregnant-menu.fxml"));
+    	loader.setController(new PregnantMenu());
+    	Parent root = loader.load();
     	
+    	Scene sc = new Scene(root);
+    	Stage st = new Stage();
+    	st.setScene(sc);
+    	st.setMaximized(true);
+    	st.show();
+    	
+    	Stage aux = (Stage) BTTN_ADULT.getScene().getWindow();
+    	aux.close();
     }
     
     @FXML
