@@ -26,8 +26,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Calculator;
 
-public class AdultIdealWeight implements Initializable {
-	
+public class AdultCardiovascularRisk implements Initializable {
+
     @FXML
     private Pane MAIN_PANE;
 
@@ -98,10 +98,10 @@ public class AdultIdealWeight implements Initializable {
     private Button BTTN_FEMALE;
 
     @FXML
-    private TextField TXT_HEIGHT;
+    private TextField TXT_WAIST;
 
     @FXML
-    private TextField TXT_CARPUS;
+    private TextField TXT_HIP;
 
     @FXML
     private Button BTTN_CALCULATE;
@@ -167,27 +167,23 @@ public class AdultIdealWeight implements Initializable {
     @FXML
     void calculateClassification(MouseEvent event) {
     	try {
-    		double height = Double.parseDouble(TXT_HEIGHT.getText());
-    		double carpus = Double.parseDouble(TXT_CARPUS.getText());
+    		double waist = Double.parseDouble(TXT_WAIST.getText());
+    		double hip = Double.parseDouble(TXT_HIP.getText());
     		
     		if(selectedGender == null) {
     			showInvalidIndicatorAlert();
     		}
     		
-    		String normalIdealWeight = "Por Complexión: " + Calculator.adultIdealWeight(height, carpus, selectedGender);
-    		String lorentzIdealWeight = "Lorentz: " + Calculator.adultIdealWeightLorentz(height, selectedGender);
-    		String regressionIdealWeight = "Por Regresión: " + Calculator.adultIdealWeightRegression((height/100), carpus, selectedGender);
+    		String result = Calculator.adultCardiovascularRisk(waist, hip, selectedGender);
     		
-    		LBL_RESULT.setText(normalIdealWeight + "\n\n"
-    				+ lorentzIdealWeight + "\n\n"
-    				+ regressionIdealWeight);
+    		LBL_RESULT.setText(result);
     		
     	} catch (Exception e) {
-    		if(TXT_HEIGHT.getText().isEmpty() || TXT_CARPUS.getText().isEmpty() || selectedGender != null) {
+    		if(TXT_WAIST.getText().isEmpty() || TXT_HIP.getText().isEmpty() || selectedGender != null) {
     			showInvalidIndicatorAlert();
     			
-    			TXT_CARPUS.clear();
-    			TXT_HEIGHT.clear();
+    			TXT_WAIST.clear();
+    			TXT_HIP.clear();
     		}
     	}
     }
@@ -396,4 +392,5 @@ public class AdultIdealWeight implements Initializable {
          // Iniciar la animación
          translateTransition.play();
      }
+	
 }

@@ -170,8 +170,20 @@ public class AdultMenu implements Initializable {
     }
 
     @FXML
-    void goToAdultCardiovascularRiskCalc(MouseEvent event) {
-
+    void goToAdultCardiovascularRiskCalc(MouseEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Adult-Cardiovascular-Risk.fxml"));
+		loader.setController(new AdultCardiovascularRisk());
+		Parent root = loader.load();
+		
+		Scene sc = new Scene(root);
+		Stage st = new Stage();
+		st.setScene(sc);
+		st.setMaximized(true);
+		
+		st.show();
+		
+		Stage aux = (Stage) BTTN_ADULT.getScene().getWindow();
+		aux.close();
     }
 
     @FXML

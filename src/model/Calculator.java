@@ -196,9 +196,11 @@ public class Calculator {
 			}
 		}
 		
-		double idealWeight = bmi * (Math.pow((height/100), 2));
+		BigDecimal idealWeight = new BigDecimal(bmi * (Math.pow((height/100), 2)));
 		
-		return idealWeight;
+		idealWeight = idealWeight.setScale(2, BigDecimal.ROUND_HALF_UP);
+		
+		return idealWeight.doubleValue();
 	}
 	
 	/**
@@ -251,22 +253,25 @@ public class Calculator {
 	 * @return the result of dividing waist by hip, and the risk's level. 
 	 */
 	public static String adultCardiovascularRisk(double waistCircumference, double hipCircumference, boolean gender) {
-		double cardiovascularRisk = waistCircumference/hipCircumference;
+		BigDecimal cardiovascularRisk = new BigDecimal(waistCircumference/hipCircumference);
+		cardiovascularRisk = cardiovascularRisk.setScale(2, BigDecimal.ROUND_HALF_UP);
 		
 		String risk = "Riesgo cardiovascular: " + cardiovascularRisk + " - ";
 		
+		double auxRisk = cardiovascularRisk.doubleValue();
+		
 		if(gender) {
-			if(cardiovascularRisk >= 0.85) {
+			if(auxRisk >= 0.85) {
 				risk += "Muy Elevado";
-			} else if (isInRange(cardiovascularRisk, 0.8, true, 0.85, false)) {
+			} else if (isInRange(auxRisk, 0.8, true, 0.85, false)) {
 				risk += "Elevado";
 			} else {
 				risk += "Muy Bajo";
 			}
 		} else {
-			if(cardiovascularRisk >= 1) {
+			if(auxRisk >= 1) {
 				risk += "Muy Elevado";
-			} else if (isInRange(cardiovascularRisk, 0.9, true, 1, false)) {
+			} else if (isInRange(auxRisk, 0.9, true, 1, false)) {
 				risk += "Elevado";
 			} else {
 				risk += "Muy Bajo";
