@@ -1,5 +1,6 @@
 package model;
 
+import java.math.BigDecimal;
 import java.util.stream.DoubleStream;
 
 public class Calculator {
@@ -142,17 +143,17 @@ public class Calculator {
 		
 		if(bmi < 16) {
 			classification += "Delgadez Severa";
-		} else if (isInRange(bmi, 16, true, 16.9, true)) {
+		} else if (isInRange(bmi, 16, true, 17, false)) {
 			classification += "Delgadez Moderada";
-		} else if (isInRange(bmi, 17, true, 18.4, true)) {
+		} else if (isInRange(bmi, 17, true, 18.5, false)) {
 			classification += "Delgadez Leve";
-		} else if (isInRange(bmi, 18.5, true, 24.9, true)) {
+		} else if (isInRange(bmi, 18.5, true, 25, false)) {
 			classification += "Normal";
-		} else if (isInRange(bmi, 25, true, 29.9, true)) {
+		} else if (isInRange(bmi, 25, true, 30, false)) {
 			classification += "Sobrepeso";
-		} else if (isInRange(bmi, 30, true, 34.9, true)) {
+		} else if (isInRange(bmi, 30, true, 35, false)) {
 			classification += "Obesidad Grado I - Moderada";
-		} else if (isInRange(bmi, 35, true, 39.9, true)) {
+		} else if (isInRange(bmi, 35, true, 40, false)) {
 			classification += "Obesidad Grado II - Severa";
 		} else {
 			classification += "Obesidad Grado III - Mórbida";
@@ -522,8 +523,10 @@ public class Calculator {
 	 * @return the calculated BMI.
 	 */
 	private static double calculateBMI(double weight, double height) {
-		double bmi = weight/(Math.pow(height, 2));
+		BigDecimal bmi = new BigDecimal(weight/(Math.pow(height, 2)));
 		
-		return bmi;
+		bmi = bmi.setScale(2, BigDecimal.ROUND_HALF_UP);
+		
+		return bmi.doubleValue();
 	}
 }

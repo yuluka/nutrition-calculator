@@ -4,9 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -15,48 +13,14 @@
 
 <Pane fx:id="MAIN_PANE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1017.0" prefWidth="1920.0" style="-fx-background-color: #73CFE8;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="1017.0" fitWidth="1200.0" layoutX="360.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="1017.0" fitWidth="1200.0" layoutX="453.0" layoutY="9.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Over-five-years%202.png" />
+            <Image url="@../images/IMC%202%20no%20bg.png" />
          </image>
       </ImageView>
-      <Label fx:id="LBL_TITTLE" layoutX="345.0" layoutY="22.0" minHeight="-Infinity" minWidth="-Infinity" text="Calcular clasificación antropométrica" textFill="WHITE">
+      <Label fx:id="LBL_TITTLE" layoutX="480.0" layoutY="22.0" minHeight="-Infinity" minWidth="-Infinity" text="Calcular IMC para Adulto" textFill="WHITE">
          <font>
             <Font name="Vladimir Script" size="100.0" />
-         </font>
-      </Label>
-      <RadioButton fx:id="RB_SIZE_FOR_AGE" layoutX="765.0" layoutY="330.0" mnemonicParsing="false" prefHeight="51.0" text="Talla para la Edad">
-         <font>
-            <Font size="25.0" />
-         </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="calculations" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton fx:id="RB_BMI_FOR_AGE" layoutX="765.0" layoutY="381.0" mnemonicParsing="false" prefHeight="51.0" text="IMC para la Edad" toggleGroup="$calculations">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </RadioButton>
-      <TextField fx:id="TXT_INDICATOR" layoutX="576.0" layoutY="544.0" onKeyPressed="#checkKey" prefHeight="91.0" prefWidth="768.0" promptText="Introduzca el indicador antropométrico" style="-fx-background-radius: 15;">
-         <font>
-            <Font size="40.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </TextField>
-      <Button fx:id="BTTN_CALCULATE" layoutX="849.0" layoutY="709.0" mnemonicParsing="false" onMouseClicked="#calculateClassification" prefHeight="51.0" prefWidth="154.0" style="-fx-background-radius: 10; -fx-background-color: white;" text="Calcular">
-         <font>
-            <Font size="30.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Label fx:id="LBL_RESULT" layoutX="668.0" layoutY="850.0" prefHeight="100.0" prefWidth="584.0" style="-fx-background-color: white;" text="Resultado:" textOverrun="CLIP">
-         <font>
-            <Font name="Arial" size="30.0" />
          </font>
       </Label>
       <VBox fx:id="SIDE_MENU_PANE" prefHeight="1017.0" prefWidth="306.0" style="-fx-background-color: white; -fx-spacing: 25;">
@@ -80,7 +44,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label fx:id="BTTN_BABY_CALCULATIONS" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="62.0" prefHeight="56.0" prefWidth="171.0" text="Clasificación Antropométrica">
+                  <Label fx:id="BTTN_BABY_CALCULATIONS" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="62.0" prefHeight="56.0" prefWidth="171.0" text="ClasificaciónAntropométrica">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -108,7 +72,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label fx:id="BTTN_CHILD_CALCULATIONS" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="62.0" prefHeight="56.0" prefWidth="171.0" text="Clasificación Antropométrica">
+                  <Label fx:id="BTTN_CHILD_CALCULATIONS" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="62.0" maxWidth="171.0" prefHeight="56.0" text="Clasificación Antropométrica">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -228,6 +192,35 @@
             </Pane>
          </children>
       </VBox>
+      <TextField fx:id="TXT_WEIGHT" layoutX="576.0" layoutY="294.0" onKeyPressed="#checkKey" prefHeight="91.0" prefWidth="768.0" promptText="Introduzca el peso (kg) de la persona" style="-fx-background-radius: 15;">
+         <font>
+            <Font size="40.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <TextField fx:id="TXT_HEIGHT" layoutX="576.0" layoutY="524.0" onKeyPressed="#checkKey" prefHeight="91.0" prefWidth="768.0" promptText="Introduzca la altura (mt) de la persona" style="-fx-background-radius: 15;">
+         <font>
+            <Font size="40.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <Button fx:id="BTTN_CALCULATE" layoutX="883.0" layoutY="709.0" mnemonicParsing="false" onMouseClicked="#calculateClassification" prefHeight="51.0" prefWidth="154.0" style="-fx-background-radius: 10; -fx-background-color: white;" text="Calcular">
+         <font>
+            <Font size="30.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="LBL_RESULT" layoutX="668.0" layoutY="850.0" prefHeight="100.0" prefWidth="584.0" style="-fx-background-color: white;" text="Resultado:" textOverrun="CLIP">
+         <font>
+            <Font name="Arial" size="30.0" />
+         </font>
+      </Label>
       <ImageView fx:id="BTTN_GO_HOME_PAGE" fitHeight="133.0" fitWidth="171.0" layoutX="125.0" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />

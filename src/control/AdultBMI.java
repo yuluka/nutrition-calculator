@@ -12,9 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,21 +26,13 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Calculator;
 
-public class ChildCalculations implements Initializable {
-    @FXML
+public class AdultBMI implements Initializable {
+    
+	@FXML
     private Pane MAIN_PANE;
 
     @FXML
     private Label LBL_TITTLE;
-
-    @FXML
-    private RadioButton RB_SIZE_FOR_AGE;
-
-    @FXML
-    private ToggleGroup calculations;
-
-    @FXML
-    private RadioButton RB_BMI_FOR_AGE;
 
     @FXML
     private VBox SIDE_MENU_PANE;
@@ -102,7 +92,7 @@ public class ChildCalculations implements Initializable {
     private Label BTTN_LBL_OLDIE;
 
     @FXML
-    private TextField TXT_INDICATOR;
+    private TextField TXT_HEIGHT;
 
     @FXML
     private Button BTTN_CALCULATE;
@@ -115,6 +105,9 @@ public class ChildCalculations implements Initializable {
 
     @FXML
     private Button BTTN_SIDE_MENU;
+
+    @FXML
+    private TextField TXT_WEIGHT;
 
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -161,29 +154,23 @@ public class ChildCalculations implements Initializable {
 	}
     
 	// --- METHODS FOR HANDLING THE CURRENT SCREEN CALCULATIONS ---
-
+    
     @FXML
     void calculateClassification(MouseEvent event) {
     	try {
-    		double indicator = Double.parseDouble(TXT_INDICATOR.getText());
+    		double weight = Double.parseDouble(TXT_WEIGHT.getText());
+    		double height = Double.parseDouble(TXT_HEIGHT.getText());
     		
-    		String result = "Resultado: ";
-    		
-    		if (RB_SIZE_FOR_AGE.isSelected()) {
-				result += Calculator.sizeForAge(indicator);
-			} else if (RB_BMI_FOR_AGE.isSelected()) {
-				result += Calculator.BMIForAge5YearsOlder(indicator);
-			} else {
-				showNoClassificationSelectedAlert();
-			}
+    		String result = "Resultado: " + Calculator.adultBMI(weight, height);
     		
     		LBL_RESULT.setText(result);
     		
     	} catch (Exception e) {
-    		if(!TXT_INDICATOR.getText().isEmpty()) {
+    		if(!TXT_WEIGHT.getText().isEmpty() && !TXT_HEIGHT.getText().isEmpty()) {
     			showInvalidIndicatorAlert();
     			
-    			TXT_INDICATOR.clear();
+    			TXT_WEIGHT.clear();
+    			TXT_HEIGHT.clear();
     		}
     	}
     }
@@ -198,15 +185,6 @@ public class ChildCalculations implements Initializable {
 		a.show();
 	}
     
-    public void showNoClassificationSelectedAlert() {
-		Alert a = new Alert(AlertType.ERROR);
-		a.setTitle("Clasificación antropométrica no seleccionada");
-		a.setHeaderText("Error por no selección de clasificación antropométrica.");
-		a.setContentText("No has seleccionado ninguna clasificación antropométrica para calcular.");
-		a.show();
-	}
-    
-
     @FXML
     void checkKey(KeyEvent event) {
     	if(event.getCode().equals(KeyCode.ENTER)) {
@@ -214,94 +192,95 @@ public class ChildCalculations implements Initializable {
     	}
     }
     
-    // --- METHODS FOR VISUAL EFFECTS ---
+ // --- METHODS FOR VISUAL EFFECTS ---
+    
+ 	/**
+ 	 * Sets the hover effects for the button to make the calculations.
+ 	 */
+ 	public void setBttnEffects() {
+         BTTN_CALCULATE.setOnMouseEntered(e -> {
+             BTTN_CALCULATE.setStyle(
+                 "-fx-background-color: #e9e9e9;" +
+         		"-fx-background-radius: 10;"
+             );
+         });
 
-	/**
-	 * Sets the hover effects for the button to make the calculations.
-	 */
-	public void setBttnEffects() {
-        BTTN_CALCULATE.setOnMouseEntered(e -> {
-            BTTN_CALCULATE.setStyle(
-                "-fx-background-color: #e9e9e9;" +
-        		"-fx-background-radius: 10;"
-            );
-        });
+         BTTN_CALCULATE.setOnMousePressed(e -> {
+             BTTN_CALCULATE.setStyle(
+                 "-fx-background-color: #d0d0d0, #b6b6b6, #b6b6b6, #d0d0d0;" +
+         		"-fx-background-radius: 10;"
+             );
+         });
 
-        BTTN_CALCULATE.setOnMousePressed(e -> {
-            BTTN_CALCULATE.setStyle(
-                "-fx-background-color: #d0d0d0, #b6b6b6, #b6b6b6, #d0d0d0;" +
-        		"-fx-background-radius: 10;"
-            );
-        });
+         BTTN_CALCULATE.setOnMouseReleased(e -> {
+             BTTN_CALCULATE.setStyle(
+ 	    		"-fx-background-color: #e9e9e9;" +
+ 				"-fx-background-radius: 10;"
+             );
+         });
+         
+         BTTN_CALCULATE.setOnMouseExited(e -> {
+             BTTN_CALCULATE.setStyle(
+                 "-fx-background-color: white;" +
+                 "-fx-background-radius: 10;"
+             );
+         });
+ 	}
+ 	
+ 	public void setSideMenuBttnEffects() {
+ 		ImageView icon = new ImageView(new Image("images/Options-bttn.png"));
+ 		
+ 		BTTN_SIDE_MENU.setGraphic(icon);
+ 		
+ 		BTTN_SIDE_MENU.setStyle("-fx-background-color: transparent;");
+ 		
+ 		BTTN_SIDE_MENU.setOnMouseEntered(e -> {
+             BTTN_SIDE_MENU.setStyle(
+                 "-fx-background-color: #e9e9e9;" +
+         		"-fx-background-radius: 100;" +
+         		"-fx-border-width: 0;"
+             );
+         });
 
-        BTTN_CALCULATE.setOnMouseReleased(e -> {
-            BTTN_CALCULATE.setStyle(
-	    		"-fx-background-color: #e9e9e9;" +
-				"-fx-background-radius: 10;"
-            );
-        });
-        
-        BTTN_CALCULATE.setOnMouseExited(e -> {
-            BTTN_CALCULATE.setStyle(
-                "-fx-background-color: white;" +
-                "-fx-background-radius: 10;"
-            );
-        });
-	}
+         BTTN_SIDE_MENU.setOnMousePressed(e -> {
+             BTTN_SIDE_MENU.setStyle(
+                 "-fx-background-color: #d0d0d0, #b6b6b6, #b6b6b6, #d0d0d0;" +
+         		"-fx-background-radius: 100;" +
+         		"-fx-border-width: 0;"
+             );
+         });
+
+         BTTN_SIDE_MENU.setOnMouseReleased(e -> {
+             BTTN_SIDE_MENU.setStyle(
+ 	    		"-fx-background-color: #e9e9e9;" +
+ 				"-fx-background-radius: 100;" +
+         		"-fx-border-width: 0;"
+             );
+         });
+         
+         BTTN_SIDE_MENU.setOnMouseExited(e -> {
+             BTTN_SIDE_MENU.setStyle(
+                 "-fx-background-color: transparent;" +
+                 "-fx-background-radius: 100;" +
+         		"-fx-border-width: 0;"
+             );
+         });
+         
+         BTTN_SIDE_MENU.setOnAction(e -> toggleMenu());
+ 	}
+ 	
+ 	private void toggleMenu() {
+     	// Obtener el desplazamiento actual del menú lateral
+         double translateX = SIDE_MENU_PANE.getTranslateX();
+
+         // Configurar la animación
+         TranslateTransition translateTransition = new TranslateTransition(Duration.millis(300), SIDE_MENU_PANE);
+
+         // Desplazar hacia la izquierda para ocultar el menú o hacia la derecha para mostrarlo
+         translateTransition.setToX(translateX == 0 ? -SIDE_MENU_PANE.getWidth() : 0);
+
+         // Iniciar la animación
+         translateTransition.play();
+     }
 	
-	public void setSideMenuBttnEffects() {
-		ImageView icon = new ImageView(new Image("images/Options-bttn.png"));
-		
-		BTTN_SIDE_MENU.setGraphic(icon);
-		
-		BTTN_SIDE_MENU.setStyle("-fx-background-color: transparent;");
-		
-		BTTN_SIDE_MENU.setOnMouseEntered(e -> {
-            BTTN_SIDE_MENU.setStyle(
-                "-fx-background-color: #e9e9e9;" +
-        		"-fx-background-radius: 100;" +
-        		"-fx-border-width: 0;"
-            );
-        });
-
-        BTTN_SIDE_MENU.setOnMousePressed(e -> {
-            BTTN_SIDE_MENU.setStyle(
-                "-fx-background-color: #d0d0d0, #b6b6b6, #b6b6b6, #d0d0d0;" +
-        		"-fx-background-radius: 100;" +
-        		"-fx-border-width: 0;"
-            );
-        });
-
-        BTTN_SIDE_MENU.setOnMouseReleased(e -> {
-            BTTN_SIDE_MENU.setStyle(
-	    		"-fx-background-color: #e9e9e9;" +
-				"-fx-background-radius: 100;" +
-        		"-fx-border-width: 0;"
-            );
-        });
-        
-        BTTN_SIDE_MENU.setOnMouseExited(e -> {
-            BTTN_SIDE_MENU.setStyle(
-                "-fx-background-color: transparent;" +
-                "-fx-background-radius: 100;" +
-        		"-fx-border-width: 0;"
-            );
-        });
-        
-        BTTN_SIDE_MENU.setOnAction(e -> toggleMenu());
-	}
-	
-	private void toggleMenu() {
-    	// Obtener el desplazamiento actual del menú lateral
-        double translateX = SIDE_MENU_PANE.getTranslateX();
-
-        // Configurar la animación
-        TranslateTransition translateTransition = new TranslateTransition(Duration.millis(300), SIDE_MENU_PANE);
-
-        // Desplazar hacia la izquierda para ocultar el menú o hacia la derecha para mostrarlo
-        translateTransition.setToX(translateX == 0 ? -SIDE_MENU_PANE.getWidth() : 0);
-
-        // Iniciar la animación
-        translateTransition.play();
-    }
 }

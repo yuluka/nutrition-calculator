@@ -126,9 +126,7 @@ public class BabyCalculations implements Initializable {
     @FXML
     private VBox SIDE_MENU_PANE;
     
-    private SideMenu smenu;
-    
-	@Override
+    @Override
 	public void initialize(URL location, ResourceBundle resources) {
 		MAIN_PANE.setOnMouseMoved(e -> configureSideMenu());	
 		
@@ -140,58 +138,36 @@ public class BabyCalculations implements Initializable {
 			
 		}
 		
+		setSideMenuBttnEffects();
 		setBttnEffects();
 	}
 	
 	public void configureSideMenu() {
-		smenu = new SideMenu((Stage) MAIN_PANE.getScene().getWindow(), SIDE_MENU_PANE, BTTN_SIDE_MENU);
-	
 		BTTN_BABY_CALCULATIONS.setText("Clasificación\nAntropométrica");
 		BTTN_CHILD_CALCULATIONS.setText("Clasificación\nAntropométrica");
 		BTTN_ADULT_CALCULATE_CARDIO_RISK.setText("Riesgo\nCardiovascular");
-		
-		setSideMenuBttnEffects();
-		
-		BTTN_GO_HOME_PAGE.setOnMouseClicked(e -> smenu.goToHomePage());
-		
-		//Baby
-		BTTN_LESS_FIVE_YEARS.setOnMouseClicked(e -> smenu.goToBabyCalcs());
-		
-		BTTN_LBL_LESS_FIVE_YEARS.setOnMouseClicked(e -> smenu.goToBabyCalcs());
-		
-		BTTN_BABY_CALCULATIONS.setOnMouseClicked(e -> smenu.goToBabyCalcs());
-		
-		//Child
-		BTTN_CHILD.setOnMouseClicked(e -> smenu.goToChildClacs());
-		
-		BTTN_LBL_CHILD.setOnMouseClicked(e -> smenu.goToChildClacs());
-		
-		BTTN_CHILD_CALCULATIONS.setOnMouseClicked(e -> smenu.goToChildClacs());
-		
-		//Adult
-		BTTN_ADULT.setOnMouseClicked(e -> smenu.goToAdultMenu());
-		
-		BTTN_LBL_ADULT.setOnMouseClicked(e -> smenu.goToAdultMenu());
-		
-		BTTN_ADULT_CALCULATE_BMI.setOnMouseClicked(e -> smenu.goToAdultBMICalc());
-		
-		BTTN_ADULT_CALCULATE_IDEAL_WEIGHT.setOnMouseClicked(e -> smenu.goToAdultIdealWeightCalc());
-		
-		BTTN_ADULT_CALCULATE_CARDIO_RISK.setOnMouseClicked(e -> smenu.goToAdultCardiovascularRiskCalc());
 
-		BTTN_ADULT_CALCULATE_BODY_FAT.setOnMouseClicked(e -> smenu.goToAdultBodyFatCalc());
-		
-		//Pregnant
-		BTTN_PREGNANT.setOnMouseClicked(e -> smenu.goToPregnantMenu());
-
-		BTTN_LBL_PREGNANT.setOnMouseClicked(e -> smenu.goToPregnantMenu());
-		
-		BTTN_PREGNANT_CALCULATE_BMI.setOnMouseClicked(e -> smenu.goToPregnantBMICalc());
-		
-		BTTN_PREGNANT_WEIGHT_GAIN.setOnMouseClicked(e -> smenu.goToPregnantWeightGainCalc());
-		
-		//Oldie
-		BTTN_OLDIE.setOnMouseClicked(e -> smenu.goToOldieMenu());
+		@SuppressWarnings("unused")
+		SideMenu smenu = new SideMenu((Stage) MAIN_PANE.getScene().getWindow(), 
+    			BTTN_GO_HOME_PAGE,
+    			BTTN_LESS_FIVE_YEARS, 
+    			BTTN_LBL_LESS_FIVE_YEARS, 
+    			BTTN_BABY_CALCULATIONS,
+    			BTTN_CHILD, 
+    			BTTN_LBL_CHILD, 
+    			BTTN_CHILD_CALCULATIONS,
+    			BTTN_ADULT, 
+    			BTTN_LBL_ADULT, 
+    			BTTN_ADULT_CALCULATE_BMI,
+    			BTTN_ADULT_CALCULATE_IDEAL_WEIGHT, 
+    			BTTN_ADULT_CALCULATE_CARDIO_RISK,
+    			BTTN_ADULT_CALCULATE_BODY_FAT, 
+    			BTTN_PREGNANT, 
+    			BTTN_LBL_PREGNANT, 
+    			BTTN_PREGNANT_CALCULATE_BMI, 
+    			BTTN_PREGNANT_WEIGHT_GAIN, 
+    			BTTN_OLDIE, 
+    			BTTN_LBL_OLDIE);
 	}
     
 	// --- METHODS FOR HANDLING THE CURRENT SCREEN CALCULATIONS ---

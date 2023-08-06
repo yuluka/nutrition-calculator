@@ -59,7 +59,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label fx:id="BTTN_BABY_CALCULATIONS" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="62.0" prefHeight="56.0" text="Clasificación Antropométrica">
+                  <Label fx:id="BTTN_BABY_CALCULATIONS" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="62.0" maxWidth="171.0" prefHeight="56.0" text="Clasificación Antropométrica">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -87,7 +87,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label fx:id="BTTN_CHILD_CALCULATIONS" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="62.0" prefHeight="56.0" text="Clasificación Antropométrica">
+                  <Label fx:id="BTTN_CHILD_CALCULATIONS" accessibleRole="TEXT_AREA" layoutX="138.0" layoutY="62.0" maxWidth="171.0" prefHeight="56.0" text="Clasificación Antropométrica">
                      <font>
                         <Font size="20.0" />
                      </font>
