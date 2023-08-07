@@ -26,8 +26,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Calculator;
 
-public class AdultCardiovascularRisk implements Initializable {
-
+public class AdultBodyFat implements Initializable {
+	
     @FXML
     private Pane MAIN_PANE;
 
@@ -98,10 +98,22 @@ public class AdultCardiovascularRisk implements Initializable {
     private Button BTTN_FEMALE;
 
     @FXML
-    private TextField TXT_WAIST;
+    private TextField TXT_TRICIPITAL;
 
     @FXML
-    private TextField TXT_HIP;
+    private TextField TXT_ABDOMINAL;
+
+    @FXML
+    private TextField TXT_THIGH;
+
+    @FXML
+    private TextField TXT_SUPRASPINAL;
+
+    @FXML
+    private TextField TXT_SUBSCAPULAR;
+
+    @FXML
+    private TextField TXT_CALF;
 
     @FXML
     private Button BTTN_CALCULATE;
@@ -167,23 +179,39 @@ public class AdultCardiovascularRisk implements Initializable {
     @FXML
     void calculateClassification(MouseEvent event) {
     	try {
-    		double waist = Double.parseDouble(TXT_WAIST.getText());
-    		double hip = Double.parseDouble(TXT_HIP.getText());
+    		double tricipitalFold = Double.parseDouble(TXT_TRICIPITAL.getText());
+    		double abdominalFold = Double.parseDouble(TXT_ABDOMINAL.getText());
+    		double subscapularFold = Double.parseDouble(TXT_SUBSCAPULAR.getText());
+    		double supraspinalFold = Double.parseDouble(TXT_SUPRASPINAL.getText());
+    		double thighFold;
+    		double calfFold;
     		
     		if(selectedGender == null) {
     			showInvalidIndicatorAlert();
     		}
     		
-    		String result = Calculator.adultCardiovascularRisk(waist, hip, selectedGender);
+    		String faulknerResult = Calculator.adultBodyFatFaulkner(tricipitalFold, abdominalFold, subscapularFold, supraspinalFold, selectedGender);
+    		String yuhaszResult = "";
     		
-    		LBL_RESULT.setText(result);
+			if(!TXT_THIGH.getText().isEmpty() || !TXT_CALF.getText().isEmpty()) {
+				thighFold = Double.parseDouble(TXT_THIGH.getText());
+	    		calfFold = Double.parseDouble(TXT_CALF.getText());
+	    		
+	    		yuhaszResult = "\n\n" + Calculator.adultBodyFatYuhasz(tricipitalFold, abdominalFold, subscapularFold, supraspinalFold, thighFold, calfFold, selectedGender);
+    		}
+    		
+    		LBL_RESULT.setText(faulknerResult + yuhaszResult);
     		
     	} catch (Exception e) {
-    		if(TXT_WAIST.getText().isEmpty() || TXT_HIP.getText().isEmpty()) {
+    		if(TXT_TRICIPITAL.getText().isEmpty() || TXT_ABDOMINAL.getText().isEmpty() || TXT_SUBSCAPULAR.getText().isEmpty() || TXT_SUPRASPINAL.getText().isEmpty() || TXT_THIGH.getText().isEmpty() || TXT_CALF.getText().isEmpty()) {
     			showInvalidIndicatorAlert();
     			
-    			TXT_WAIST.clear();
-    			TXT_HIP.clear();
+    			TXT_TRICIPITAL.clear();
+    			TXT_ABDOMINAL.clear();
+    			TXT_SUBSCAPULAR.clear();
+    			TXT_SUPRASPINAL.clear();
+    			TXT_THIGH.clear();
+    			TXT_CALF.clear();
     		}
     	}
     }
@@ -392,5 +420,4 @@ public class AdultCardiovascularRisk implements Initializable {
          // Iniciar la animación
          translateTransition.play();
      }
-	
 }

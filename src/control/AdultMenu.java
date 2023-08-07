@@ -165,8 +165,20 @@ public class AdultMenu implements Initializable {
     }
 
     @FXML
-    void goToAdultBodyFatCalc(MouseEvent event) {
-
+    void goToAdultBodyFatCalc(MouseEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Adult-Body-Fat.fxml"));
+		loader.setController(new AdultBodyFat());
+		Parent root = loader.load();
+		
+		Scene sc = new Scene(root);
+		Stage st = new Stage();
+		st.setScene(sc);
+		st.setMaximized(true);
+		
+		st.show();
+		
+		Stage aux = (Stage) BTTN_ADULT.getScene().getWindow();
+		aux.close();
     }
 
     @FXML

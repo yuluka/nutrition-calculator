@@ -236,7 +236,22 @@ public class SideMenu {
     }
 
     public void goToAdultBodyFatCalc() {
-
+    	try {
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Adult-Body-Fat.fxml"));
+    		loader.setController(new AdultBodyFat());
+    		Parent root = loader.load();
+    		
+    		Scene sc = new Scene(root);
+    		Stage st = new Stage();
+    		st.setScene(sc);
+    		st.setMaximized(true);
+    		
+    		st.show();
+    		
+    		currentStage.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     public void goToAdultCardiovascularRiskCalc() {

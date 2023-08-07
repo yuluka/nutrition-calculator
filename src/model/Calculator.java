@@ -295,9 +295,11 @@ public class Calculator {
 	public static String adultBodyFatFaulkner(double tricipitalFold, double abdominalFold, double subscapularFold, double supraspinalFold, boolean gender) {
 		double[] folds = {tricipitalFold, abdominalFold, subscapularFold, supraspinalFold};
 		
-		double percentage = ((DoubleStream.of(folds).sum()) * 0.153 + 5.783) * 100;
+		BigDecimal percentage = new BigDecimal(((DoubleStream.of(folds).sum()) * 0.153 + 5.783) * 100);
 		
-		return clasifyBodyFat(percentage, gender);
+		percentage = percentage.setScale(2, BigDecimal.ROUND_HALF_UP);
+		
+		return clasifyBodyFat(percentage.doubleValue(), gender);
 	}
 	
 	/**
@@ -316,15 +318,17 @@ public class Calculator {
 	public static String adultBodyFatYuhasz(double tricipitalFold, double abdominalFold, double subscapularFold, double supraspinalFold, double thighFold, double calfFold, boolean gender) {
 		double[] folds = {tricipitalFold, abdominalFold, subscapularFold, supraspinalFold, thighFold, calfFold};
 		
-		double percentage = 0;
+		BigDecimal percentage = null;
 		
 		if(gender) {
-			percentage = ((DoubleStream.of(folds).sum()) * 0.1429 + 4.56) * 100;
+			percentage = new BigDecimal(((DoubleStream.of(folds).sum()) * 0.1429 + 4.56) * 100);
 		} else {
-			percentage = ((DoubleStream.of(folds).sum()) * 0.097 + 3.64	) * 100;
+			percentage = new BigDecimal(((DoubleStream.of(folds).sum()) * 0.097 + 3.64	) * 100);
 		}
 		
-		return clasifyBodyFat(percentage, gender);
+		percentage = percentage.setScale(2, BigDecimal.ROUND_HALF_UP);
+		
+		return clasifyBodyFat(percentage.doubleValue(), gender);
 	}
 	
 	/**
